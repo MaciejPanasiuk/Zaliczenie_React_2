@@ -1,12 +1,12 @@
 import ProductsList from "../ProductsList/ProductsList";
-import shoppingList from "../shoppingList/shoppingList";
 import styles from "../../App.module.scss";
+import ShoppingList from "../ShopingList/ShopingList";
 
 function Dashboard() {
   return (
     <div className={styles.columnsWrapper}>
       <ProductsList />
-      <shoppingList />
+      <ShoppingList />
     </div>
   );
 }

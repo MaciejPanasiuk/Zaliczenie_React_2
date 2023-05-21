@@ -1,10 +1,27 @@
 import React from "react";
 import styles from "../../common/styles/Headers.module.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Typography, Button } from "@mui/material";
+import { loadProducts, loadShoppingList } from "../../redux/productsSlice";
+import axios from "axios";
 
 function Header(props) {
   const currentUser = JSON.parse(window.localStorage.getItem("user"));
+  const dispatch = useDispatch();
+
+  const getProductsFromAPI = async (path) => {
+    try {
+      const resProducts = await axios.get(`http://localhost:9000/${path}`);
+      dispatch(loadProducts(resProducts.data));
+      const resShoppingList = await axios.get(
+        `http://localhost:9000/products/shoppingList`
+      );
+      dispatch(loadShoppingList(resShoppingList.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className={styles.headerWrapper}>
@@ -13,7 +30,12 @@ function Header(props) {
           Zalogowany:{" "}
           {`${currentUser.userfirstName} ${currentUser.userLastName}`}
         </Typography>
-        <Button variant="contained">Załaduj produkty</Button>
+        <Button
+          variant="contained"
+          onClick={() => getProductsFromAPI("products")}
+        >
+          Załaduj produkty
+        </Button>
         <Link to="/">
           <Button variant="contained" color="error">
             Wyloguj

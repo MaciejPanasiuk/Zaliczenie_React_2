@@ -2,9 +2,10 @@ import Header from "./components/Header/Header";
 import ProductsFilters from "./components/ProductsFilters/ProductsFilters";
 import styles from "./App.module.scss";
 import { Navigate } from "react-router-dom";
-// import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard";
 // import ProductsList from "./components/ProductsList/ProductsList";
-// import shoppingList from "./components/shoppingList/shoppingList";
+// import ShoppingList from "./components/ShoppingList/ShoppingList";
 
 function App(props) {
   const userExist = localStorage.getItem("user");
@@ -15,7 +16,8 @@ function App(props) {
     <div className={styles.appWrapper}>
       <Header />
       <ProductsFilters />
-      {/* <Outlet /> */}
+      <Dashboard />
+      <Outlet />
     </div>
   );
 }
