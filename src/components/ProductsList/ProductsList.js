@@ -10,7 +10,9 @@ import { CircularProgress } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
 
 function ProductsList() {
-  const productsList = useSelector((state) => state.products.productsList);
+  const filteredProducts = useSelector(
+    (state) => state.products.filteredProducts
+  );
   const loadingStatus = useSelector((state) => state.products.loadingStatus);
   const dispatch = useDispatch();
   const [addedItemId, setaddedItemId] = useState(0);
@@ -38,8 +40,8 @@ function ProductsList() {
     <div className={commonColumnsStyles.AppColumn}>
       <header className={commonColumnsStyles.AppHeader}>
         <p>Products list</p>
-        {productsList.length > 0
-          ? productsList.map((product) => (
+        {filteredProducts.length > 0
+          ? filteredProducts.map((product) => (
               <span onClick={() => handleItemClick(product)}>
                 {" "}
                 {product.id} {product.name}{" "}

@@ -1,19 +1,23 @@
 import React from "react";
 import styles from "../../common/styles/Headers.module.scss";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Typography, Button } from "@mui/material";
 import { loadProducts, loadShoppingList } from "../../redux/productsSlice";
+import { filterProducts } from "../../redux/productsSlice";
 import axios from "axios";
 
 function Header(props) {
   const currentUser = JSON.parse(window.localStorage.getItem("user"));
+  const searchFilter = useSelector((state) => state.products.searchFilter);
+
   const dispatch = useDispatch();
 
   const getProductsFromAPI = async (path) => {
     try {
       const resProducts = await axios.get(`http://localhost:9000/${path}`);
       dispatch(loadProducts(resProducts.data));
+      dispatch(filterProducts(searchFilter));
       const resShoppingList = await axios.get(
         `http://localhost:9000/products/shoppingList`
       );
