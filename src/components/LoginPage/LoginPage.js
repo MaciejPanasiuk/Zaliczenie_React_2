@@ -17,7 +17,7 @@ function LoginPage() {
       "user",
       JSON.stringify({ userfirstName, userLastName })
     );
-    navigate("/products");
+    navigate("/products/list");
   };
   return (
     <div>

@@ -6,9 +6,11 @@ export const productsSlice = createSlice({
     productsList: [],
     filteredProducts: [],
     shoppingList: [],
+    productDetails: {},
     searchFilter: "",
     foodOnly: false,
-    loadingStatus: "initial",
+    productloadingStatus: "initial",
+    detailsloadingStatus: "initial",
   },
   reducers: {
     loadProducts: (state, value) => {
@@ -16,6 +18,9 @@ export const productsSlice = createSlice({
     },
     loadShoppingList: (state, value) => {
       state.shoppingList = value.payload;
+    },
+    loadDetails: (state, value) => {
+      state.productDetails = value.payload;
     },
     filterProducts: (state, value) => {
       state.searchFilter = value.payload;
@@ -32,7 +37,10 @@ export const productsSlice = createSlice({
       state.foodOnly = value.payload;
     },
     setProductLoadingState: (state, value) => {
-      state.loadingStatus = value.payload;
+      state.productloadingStatus = value.payload;
+    },
+    setDetailsLoadingState: (state, value) => {
+      state.detailsloadingStatus = value.payload;
     },
   },
 });
@@ -40,9 +48,11 @@ export const productsSlice = createSlice({
 export const {
   loadProducts,
   loadShoppingList,
+  loadDetails,
   filterProducts,
   showOnlyFood,
   setProductLoadingState,
+  setDetailsLoadingState,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

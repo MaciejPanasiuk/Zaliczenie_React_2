@@ -8,6 +8,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Page404 from "./components/Page404/Page404";
 import store from "./redux/store";
 import { Provider } from "react-redux";
+import Dashboard from "./components/Dashboard/Dashboard";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -19,14 +21,14 @@ const router = createBrowserRouter([
     path: "/products",
     element: <App />,
     children: [
-      // {
-      //   path: "productsList",
-      //   element: <ProductsList />,
-      // },
-      // {
-      //   path: "shoppingList",
-      //   element: <ShoppingList />,
-      // },
+      {
+        path: "list",
+        element: <Dashboard />,
+      },
+      {
+        path: "details/:id",
+        element: <ProductDetails />,
+      },
     ],
   },
 ]);

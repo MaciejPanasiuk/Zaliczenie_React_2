@@ -3,7 +3,6 @@ import ProductsFilters from "./components/ProductsFilters/ProductsFilters";
 import styles from "./App.module.scss";
 import { Navigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import Dashboard from "./components/Dashboard/Dashboard";
 // import ProductsList from "./components/ProductsList/ProductsList";
 // import ShoppingList from "./components/ShoppingList/ShoppingList";
 
@@ -16,7 +15,6 @@ function App(props) {
     <div className={styles.appWrapper}>
       <Header />
       <ProductsFilters />
-      <Dashboard />
       <Outlet />
     </div>
   );

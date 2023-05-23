@@ -10,7 +10,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function ShoppingList() {
   const shoppingList = useSelector((state) => state.products.shoppingList);
-  const loadingStatus = useSelector((state) => state.products.loadingStatus);
+  const productloadingStatus = useSelector(
+    (state) => state.products.productloadingStatus
+  );
   const [deletedItemId, setdeletedItemId] = useState(0);
   const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ function ShoppingList() {
               <span onClick={() => handleItemClick(product, index)}>
                 {" "}
                 {index + 1} {product.name}{" "}
-                {loadingStatus === "RemovingItem" &&
+                {productloadingStatus === "RemovingItem" &&
                 deletedItemId === product.id ? ( //needs a fix, to id or something else
                   <CircularProgress />
                 ) : (
