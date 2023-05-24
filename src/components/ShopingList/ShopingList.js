@@ -38,7 +38,10 @@ function ShoppingList() {
         <p>Shopping List</p>
         {shoppingList.length > 0
           ? shoppingList.map((product, index) => (
-              <span onClick={() => handleItemClick(product, index)}>
+              <span
+                key={index + product.name + "_sh"}
+                onClick={() => handleItemClick(product, index)}
+              >
                 {" "}
                 {index + 1} {product.name}{" "}
                 {productloadingStatus === "RemovingItem" &&
